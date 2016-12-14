@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const router = require('./router');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cors = require('cors');
 
 //DB set up
 mongoose.connect('mongodb://localhost:auth/auth');
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost:auth/auth');
 //App set up
 const app = express();
 app.use(bodyParser.json({ type: '*/*' }));
+app.use(cors());
 app.use(morgan('combined'));
 app.use(passport.initialize());
 router(app);
